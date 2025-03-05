@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      username: darknash
+      password: darknash
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      database: admin
