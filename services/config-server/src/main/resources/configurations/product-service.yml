@@ -6,7 +6,9 @@ spring:
     username: darknash
     password: darknash
   jpa:
+    show-sql: true
     hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
       ddl-auto: validate
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -16,6 +18,10 @@ spring:
     baseline-description: "init"
     baseline-version: 0
     user: ${spring.datasource.username}
-    password: ${spring.datasource.password}
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
 server:
   port: 8050

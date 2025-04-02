@@ -1,24 +1,24 @@
 services:
-  postgres:
+  postgresql:
     container_name: ms_pg_sql
     image: postgres
     environment:
       POSTGRES_USER: darknash
       POSTGRES_PASSWORD: darknash
-      PGDATA: /var/lib/postgresql/data
+      PG_DATA: /data/postgres
     volumes:
-      - postgres:/var/lib/postgresql/
+      - postgres:/data/postgres
     ports:
       - "5432:5432"
     networks:
-      - microservices-net
+      - microservice-net
     restart: unless-stopped
 
   pgadmin:
     container_name: ms_pgadmin
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin@pgadmin.org}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
@@ -26,26 +26,39 @@ services:
     ports:
       - "5050:80"
     networks:
-      - microservices-net
-    restart: unless-stopped
+      - microservice-net
 
-  mongodb:
-    container_name: ms_mongo_db
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo:/data
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: darknash
-      MONGO_INITDB_ROOT_PASSWORD: darknash
   zipkin:
     container_name: zipkin
     image: openzipkin/zipkin
     ports:
       - "9411:9411"
     networks:
-      - microservices-net
+      - microservice-net
+
+
+  mongodb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=darknash
+      - MONGO_INITDB_ROOT_PASSWORD=darknash
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=darknash
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=darknash
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -56,7 +69,8 @@ services:
     ports:
       - "22181:2181"
     networks:
-      - microservices-net
+      - microservice-net
+
   kafka:
     image: confluentinc/cp-kafka:latest
     container_name: ms_kafka
@@ -64,44 +78,29 @@ services:
       - "9092:9092"
     depends_on:
       - zookeeper
+
     environment:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
     networks:
-      - microservices-net
-
-
-
-  mongo-express:
-    image: mongo-express
-    container_name: ms_mongo_express
-    restart: always
-    ports:
-      - "8081:8081"
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: darknash
-      ME_CONFIG_MONGODB_ADMINPASSWORD: darknash
-      ME_CONFIG_MONGODB_SERVER: mongodb
+      - microservice-net
 
   mail-dev:
-    container_name: ms_mail_dev
+    container_name: ms-mail-dev
     image: maildev/maildev
     ports:
-      - "1080:1080"
-      - "1025:1025"
-
+      - 1080:1080
+      - 1025:1025
 networks:
-  microservices-net:
+  microservice-net:
     driver: bridge
 
 
 volumes:
-    postgres:
-    pgadmin:
-    mongo:
-
-
-
+  postgres:
+  pgadmin:
+  mongo:

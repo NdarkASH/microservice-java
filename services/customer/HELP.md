@@ -4,23 +4,25 @@
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.3.9/maven-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.3.9/maven-plugin/build-image.html)
-* [Spring Data MongoDB](https://docs.spring.io/spring-boot/3.3.9/reference/data/nosql.html#data.nosql.mongodb)
-* [Eureka Discovery Client](https://docs.spring.io/spring-cloud-netflix/reference/spring-cloud-netflix.html#_service_discovery_eureka_clients)
+* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.4/maven-plugin)
+* [Create an OCI image](https://docs.spring.io/spring-boot/3.4.4/maven-plugin/build-image.html)
+* [Spring Data Reactive MongoDB](https://docs.spring.io/spring-boot/3.4.4/reference/data/nosql.html#data.nosql.mongodb)
+* [Spring Web](https://docs.spring.io/spring-boot/3.4.4/reference/web/servlet.html)
 * [Config Client](https://docs.spring.io/spring-cloud-config/reference/client.html)
-* [Spring Web](https://docs.spring.io/spring-boot/3.3.9/reference/web/servlet.html)
-* [Validation](https://docs.spring.io/spring-boot/3.3.9/reference/io/validation.html)
+* [Eureka Discovery Client](https://docs.spring.io/spring-cloud-netflix/reference/spring-cloud-netflix.html#_service_discovery_eureka_clients)
+* [Validation](https://docs.spring.io/spring-boot/3.4.4/reference/io/validation.html)
+* [Spring Data MongoDB](https://docs.spring.io/spring-boot/3.4.4/reference/data/nosql.html#data.nosql.mongodb)
 
 ### Guides
 The following guides illustrate how to use some features concretely:
 
 * [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
-* [Service Registration and Discovery with Eureka and Spring Cloud](https://spring.io/guides/gs/service-registration-and-discovery/)
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+* [Service Registration and Discovery with Eureka and Spring Cloud](https://spring.io/guides/gs/service-registration-and-discovery/)
 * [Validation](https://spring.io/guides/gs/validating-form-input/)
+* [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
 
 ### Maven Parent overrides
 

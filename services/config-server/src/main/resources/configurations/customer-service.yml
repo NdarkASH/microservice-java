@@ -1,11 +1,14 @@
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
   data:
     mongodb:
       username: darknash
       password: darknash
       host: localhost
       port: 27017
-      database: customer
       authentication-database: admin
+      database: customer
 server:
   port: 8090
