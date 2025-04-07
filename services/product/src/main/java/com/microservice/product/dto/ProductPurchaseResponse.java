@@ -1,0 +1,25 @@
+package com.microservice.product.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class ProductPurchaseResponse {
+
+    private Integer Id;
+
+    private String Name;
+
+    private String Description;
+
+    private BigDecimal Price;
+
+    private Double quantity;
+}

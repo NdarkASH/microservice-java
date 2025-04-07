@@ -1,5 +1,7 @@
 package com.microservice.product.dto;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +26,7 @@ public class ProductRequest {
     @Positive(message = "price must be above 0")
     private BigDecimal price;
 
+    @NotNull
     private Integer categoryId;
 
 }

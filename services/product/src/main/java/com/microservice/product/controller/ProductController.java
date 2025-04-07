@@ -1,9 +1,6 @@
 package com.microservice.product.controller;
 
-import com.microservice.product.dto.AppResponse;
-import com.microservice.product.dto.CategoryResponse;
-import com.microservice.product.dto.ProductRequest;
-import com.microservice.product.dto.ProductResponse;
+import com.microservice.product.dto.*;
 import com.microservice.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -55,6 +52,20 @@ public class ProductController {
                 .code(HttpStatus.OK.value())
                 .message("Product found")
                 .data(products)
+                .build();
+    }
+
+    @GetMapping(
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            path = "/purchase"
+    )
+    public AppResponse<List<ProductPurchaseResponse>> getAllPurchasedProducts(@RequestBody List<ProductPurchaseRequest> request) {
+        List<ProductPurchaseResponse> responses = productService.getProductPurchases(request);
+
+        return AppResponse.<List<ProductPurchaseResponse>>builder()
+                .code(HttpStatus.OK.value())
+                .message("Transaction Successful")
+                .data(responses)
                 .build();
     }
 

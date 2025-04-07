@@ -1,6 +1,8 @@
 package com.microservice.product.service;
 
 
+import com.microservice.product.dto.ProductPurchaseRequest;
+import com.microservice.product.dto.ProductPurchaseResponse;
 import com.microservice.product.dto.ProductRequest;
 import com.microservice.product.dto.ProductResponse;
 import org.springframework.data.domain.Page;
@@ -15,6 +17,7 @@ public interface ProductService {
     ProductResponse getProductById(Integer id);
     void deleteProductById(Integer id);
     List<String> getAllCategoriesNames();
+    List<ProductPurchaseResponse> getProductPurchases(List<ProductPurchaseRequest> requests);
 //    Page<ProductResponse> getAllProductsByCategory(String category);
 
 
