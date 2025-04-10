@@ -10,4 +10,5 @@ class NotificationApplicationTests {
 	void contextLoads() {
 	}
 
+
 }
